@@ -1,0 +1,49 @@
+<p>item-list works!</p>
+
+
+
+<ng-container *ngIf="true">
+    <div class="row">
+        <div class="col">
+            <h2>
+                Für mich reserviert
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 pt-3" *ngFor="let item of this.itemsService.itemsCurrentUser">
+            <div class="card">
+                <img [src]="item.hrefImg" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.headline}}</h5>
+                    <p class="card-text">{{item.text}}</p>
+                    <a [href]="item.href" class="btn btn-primary">{{item.href}}</a>
+                    <a  class="btn btn-danger mt-lg-2 ml-2 ml-lg-0">Nicht mehr reservieren</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<div class="row">
+    <div class="col">
+        <h2>
+            Noch nicht reserviert
+        </h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-3 pt-3" *ngFor="let item of this.itemsService.items">
+        <div class="card">
+            <img [src]="item.hrefImg" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{item.headline}}</h5>
+                <p class="card-text">{{item.text}}</p>
+                <a [href]="item.href" class="btn btn-primary overflow-hidden">Zum Produkt</a>
+                <a class="btn btn-primary mt-lg-2 ml-2 ml-lg-0">Reservieren</a>
+            </div>
+        </div>
+    </div>
+</div>
