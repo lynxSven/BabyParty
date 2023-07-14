@@ -8,11 +8,16 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { HeadlineComponent } from './headline/headline.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { LoginComponent } from './login/login/login.component';
+import { ItemContainerComponent } from './item-container/item-container.component';
 @NgModule({
   declarations: [
     AppComponent,
     ItemListComponent,
-    HeadlineComponent
+    HeadlineComponent,
+    LoginComponent,
+    ItemContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,7 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
