@@ -6,7 +6,7 @@
             </button>
             <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
                 <ng-container *ngFor="let user of this.authService.allUsers">
-                    <button ngbDropdownItem class="btn btn-custom-color">{{user.loginName}}</button>
+                    <button ngbDropdownItem class="btn btn-custom-color" (click)="this.login(user.loginName)">{{user.loginName}}</button>
                 </ng-container>
             </div>
         </div>

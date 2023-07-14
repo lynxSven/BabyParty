@@ -2,23 +2,38 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './user';
 import { catchError, retry, throwError } from 'rxjs';
+import { CookieService } from 'ngx-cookie-service';
 
-
+const USER_COOKIE_NAME = "currentUser";
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  currentUser = 'someone';
   allUsers: User[] = []
 
-  constructor(private http: HttpClient) { }
+
+  constructor(
+    private http: HttpClient,
+    private cookieService: CookieService
+  ) { }
 
   isAuthenticated(): boolean {
-    if (this.currentUser !== undefined && this.currentUser !== null) {
-      return false;
-    }
-    return false;
+    console.log(this.cookieService.get(USER_COOKIE_NAME));
+    console.log("checking ",this.cookieService.get(USER_COOKIE_NAME) !== null && this.cookieService.get(USER_COOKIE_NAME) !== undefined && this.cookieService.get(USER_COOKIE_NAME).length !== 0)
+    return this.cookieService.get(USER_COOKIE_NAME) !== null && this.cookieService.get(USER_COOKIE_NAME) !== undefined && this.cookieService.get(USER_COOKIE_NAME).length !== 0;
+  }
+
+  getCurrentUser(): string {
+    return this.cookieService.get(USER_COOKIE_NAME);
+  }
+
+  setCurrentUser(loginName: string) {
+    this.cookieService.set(USER_COOKIE_NAME, loginName);
+    this.cookieService.get(USER_COOKIE_NAME);
+  }
+
+  emptyCurrentUser(){
+    this.cookieService.delete(USER_COOKIE_NAME);
   }
 
   loadAllData(): void {
