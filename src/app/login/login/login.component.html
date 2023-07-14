@@ -1,21 +1,25 @@
 <div class="col d-flex justify-content-center">
     <div class="row">
-        <div class="btn-group">
-            <button type="button" class="btn btn-custom-color dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                aria-expanded="false">
-                Wer bist du?
+        <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-outline-custom-color" id="dropdownBasic1" ngbDropdownToggle>
+                Wer bist du?    
             </button>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Separated link</a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <ng-container *ngFor="let user of this.authService.allUsers">
+                    <button ngbDropdownItem class="btn btn-custom-color">{{user.loginName}}</button>
+                </ng-container>
             </div>
         </div>
     </div>
 </div>
 
-<div class=" d-flex justify-content-center">
-    <img src="./assets/hand_foot.svg" class=" w-100 imgFront" alt="Responsive image">
-</div>
+
+<div class="row">
+    <div class="col">
+
+    </div>
+
+
+    <div class=" d-flex justify-content-center">
+        <img src="./assets/hand_foot.svg" class=" w-100 imgFront" alt="Responsive image">
+    </div>
