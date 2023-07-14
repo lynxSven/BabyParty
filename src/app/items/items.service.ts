@@ -11,13 +11,13 @@ export class ItemsService {
   itemsCurrentUser: Items[] = [];
   items: Items[] = [];
   itemTest: any = null;
-  constructor(private http: HttpClient,public authService: AuthService,) { }
+  constructor(private http: HttpClient, public authService: AuthService) { }
 
 
 
   loadDataReservedByCurrentUser(): void {
 
-    this.http.get<any>("https://babypartybackend.adaptable.app/shopping-list/currentUser/"+ this.authService.getCurrentUser()).pipe(retry(1), catchError(this.handleError)).subscribe(
+    this.http.get<any>("https://babypartybackend.adaptable.app/shopping-list/currentUser/" + this.authService.getCurrentUser()).pipe(retry(1), catchError(this.handleError)).subscribe(
       (data: Items[]) => {
         console.log("got my data ", data);
         this.itemsCurrentUser = data;
@@ -34,6 +34,29 @@ export class ItemsService {
       }
     );
   }
+
+  updateItemToCurrentUser(id: string) {
+    this.updateCurrentUser(id, this.authService.getCurrentUser());
+  }
+
+  updateItemToNullUser(id: string) {
+    this.updateCurrentUser(id, "");
+  }
+  private updateCurrentUser(id: string, assignedUser: string): void {
+
+    this.http.patch<any>("https://babypartybackend.adaptable.app/shopping-list/currentUser/" + id, {
+      "assignedUser": assignedUser
+    }).pipe(retry(1), catchError(this.handleError)).subscribe(
+      (data: Items[]) => {
+        console.log("got my data ", data);
+        this.loadAllData();
+        this.loadDataReservedByCurrentUser();
+      }
+    );
+  }
+
+
+
   // Error handling
   handleError(error: any) {
     let errorMessage = '';
@@ -50,4 +73,5 @@ export class ItemsService {
       return errorMessage;
     });
   }
+
 }
