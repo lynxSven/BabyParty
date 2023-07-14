@@ -14,7 +14,7 @@
                     <h5 class="card-title">{{item.headline}}</h5>
                     <p class="card-text">{{item.text}}</p>
                     <a [href]="item.href" class="btn btn-primary">{{item.href}}</a>
-                    <a  class="btn btn-danger mt-lg-2 ml-2 ml-lg-0">Nicht mehr reservieren</a>
+                    <a class="btn btn-danger mt-lg-2 ml-2 ml-lg-0">Nicht mehr reservieren</a>
 
                 </div>
             </div>
@@ -33,7 +33,7 @@
 <div class="row">
     <div class="col-lg-3 pt-3" *ngFor="let item of this.itemsService.items">
         <div class="card">
-            <img [src]="item.hrefImg" class="card-img-top">
+            <img [src]="item.hrefImg" class="card-img-top img-thumbnail">
             <div class="card-body">
                 <h5 class="card-title">{{item.headline}}</h5>
                 <p class="card-text">{{item.text}}</p>
@@ -44,4 +44,10 @@
             </div>
         </div>
     </div>
+    <ng-container *ngIf="this.itemsService.items === undefined || this.itemsService.items.length <= 0">
+        <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+        </div>
+        <span class="ml-2">Daten werden geladen...</span>
+    </ng-container>
 </div>
