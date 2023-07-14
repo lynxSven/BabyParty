@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, retry, throwError } from 'rxjs';
+import { AuthService } from '../login/auth/auth.service';
 import { Items } from './items';
 
 @Injectable({
@@ -10,13 +11,13 @@ export class ItemsService {
   itemsCurrentUser: Items[] = [];
   items: Items[] = [];
   itemTest: any = null;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,public authService: AuthService,) { }
 
 
 
   loadDataReservedByCurrentUser(): void {
 
-    this.http.get<any>("https://babypartybackend.adaptable.app/shopping-list/currentUser").pipe(retry(1), catchError(this.handleError)).subscribe(
+    this.http.get<any>("https://babypartybackend.adaptable.app/shopping-list/currentUser/"+ this.authService.getCurrentUser()).pipe(retry(1), catchError(this.handleError)).subscribe(
       (data: Items[]) => {
         console.log("got my data ", data);
         this.itemsCurrentUser = data;
