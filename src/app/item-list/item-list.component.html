@@ -14,7 +14,7 @@
                     <h5 class="card-title">{{item.headline}}</h5>
                     <p class="card-text">{{item.text}}</p>
                     <a [href]="item.href" class="btn btn-primary">Zum Produkt</a>
-                    <a class="btn btn-danger mt-lg-2 ml-2 ml-lg-0" (click)="this.itemsService.updateItemToNullUser(item._id)">Nicht mehr reservieren</a>
+                    <a class="btn btn-danger mt-lg-2 ms-2 ms-lg-0" (click)="this.itemsService.updateItemToNullUser(item._id)">Nicht mehr reservieren</a>
 
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 <ng-container *ngIf="item.href != undefined">
                     <a [href]="item.href" class="btn btn-primary overflow-hidden">Zum Produkt</a>
                 </ng-container>
-                <a class="btn btn-primary mt-lg-2 ml-2 ml-lg-0" (click)="this.itemsService.updateItemToCurrentUser(item._id)">Reservieren</a>
+                <a class="btn btn-primary ms-2" (click)="this.itemsService.updateItemToCurrentUser(item._id)">Reservieren</a>
             </div>
         </div>
     </div>
