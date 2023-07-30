@@ -1,1 +1,54 @@
-<p>food works!</p>
+<div class="row">
+    <div class="col alert alert-primary">
+        Hallo Liebe Freunde,
+        <p>
+            Es wird ein buffet geben
+        </p>
+        <p>Bitte tragt hier ein, falls ihr etwas zu essen zum Buffet beitragen wollt. Damit wir nicht 10 Käsekuchen
+            haben gibt es diese Liste.</p>
+        <p>Wir werden natürlich auch Getränke und Essen beisteuern.</p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col">
+        <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">Ich bringe folgende Speise mit</span>
+            <input type="text" class="form-control" placeholder="Gerichtname" aria-label="Username"
+                aria-describedby="basic-addon1">
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="input-group">
+            <span class="input-group-text">Ergänzungen</span>
+            <textarea class="form-control" aria-label="With textarea"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row pt-3">
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Speichern</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3 pt-3" *ngFor="let item of this.foodService.items">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{item.headline}}</h5>
+                <p class="card-text">{{item.text}}</p>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngIf="this.foodService.items === undefined || this.foodService.items.length <= 0">
+        <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+        </div>
+        <span class="ml-2">Daten werden geladen...</span>
+    </ng-container>
+</div>

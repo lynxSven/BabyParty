@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FoodService } from '../service/food/food.service';
 
 @Component({
   selector: 'app-food',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./food.component.scss']
 })
 export class FoodComponent {
+
+  constructor(public foodService: FoodService){
+
+  }
 
 }
