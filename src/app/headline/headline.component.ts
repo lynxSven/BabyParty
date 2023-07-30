@@ -8,6 +8,8 @@ import { AuthService } from '../login/auth/auth.service';
   styleUrls: ['./headline.component.scss']
 })
 export class HeadlineComponent {
+
+  public isCollapsed = true;
   constructor(public authService: AuthService, private router: Router) {
 
 
@@ -16,5 +18,5 @@ export class HeadlineComponent {
     this.authService.emptyCurrentUser()
     console.log("before navigate");
     this.router.navigate(["login"]);
-}
+  }
 }
