@@ -1,12 +1,15 @@
 <div class="row">
-    <div class="col alert alert-primary">
-        Hallo Liebe Freunde,
-        <p>
-            Es wird ein buffet geben
-        </p>
-        <p>Bitte tragt hier ein, falls ihr etwas zu essen zum Buffet beitragen wollt. Damit wir nicht 10 Käsekuchen
-            haben gibt es diese Liste.</p>
-        <p>Wir werden natürlich auch Getränke und Essen beisteuern.</p>
+    <div class="col">
+        <div class="alert alert-primary  mt-2">
+
+            Hallo Liebe Freunde,
+            <p>
+                Es wird ein Buffet geben
+            </p>
+            <p>Bitte tragt hier ein, falls ihr etwas zu essen zum Buffet beitragen wollt. Damit wir nicht 10 Käsekuchen
+                haben gibt es diese Liste.</p>
+            <p>Wir werden natürlich auch Getränke und Essen beisteuern.</p>
+        </div>
     </div>
 </div>
 
@@ -16,7 +19,7 @@
         <div class="input-group mb-3">
             <span class="input-group-text" id="basic-addon1">Ich bringe folgende Speise mit</span>
             <input type="text" class="form-control" placeholder="Gerichtname" aria-label="Username"
-                aria-describedby="basic-addon1">
+                aria-describedby="basic-addon1" id="headline" [formControl]="foodHeadline">
         </div>
     </div>
 </div>
@@ -25,27 +28,47 @@
     <div class="col">
         <div class="input-group">
             <span class="input-group-text">Ergänzungen</span>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
+            <textarea class="form-control" aria-label="With textarea" [formControl]="foodText"></textarea>
         </div>
     </div>
 </div>
 
 <div class="row pt-3">
     <div class="col-auto">
-        <button type="submit" class="btn btn-primary mb-3">Speichern</button>
+        <button type="submit" class="btn btn-primary mb-3" (click)="submit()">Speichern</button>
     </div>
 </div>
 
 <div class="row">
-    <div class="col-lg-3 pt-3" *ngFor="let item of this.foodService.items">
+    <div class="col-12 pt-3" *ngFor="let item of this.foodService.items">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">{{item.headline}}</h5>
+                <h5 class="card-title">{{item.headline}}
+                    <div class="float-end">
+                        {{item.user}}
+
+                        <ng-container *ngIf="this.authService.getCurrentUser() ===  item.user">
+
+                            <button type="button" class="btn btn-outline-danger" (click)="this.delete(item._id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path
+                                        d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z">
+                                    </path>
+                                    <path
+                                        d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z">
+                                    </path>
+                                </svg>
+                                Löschen
+                            </button>
+                        </ng-container>
+                    </div>
+                </h5>
                 <p class="card-text">{{item.text}}</p>
             </div>
         </div>
     </div>
-    <ng-container *ngIf="this.foodService.items === undefined || this.foodService.items.length <= 0">
+    <ng-container *ngIf="this.foodService.items === undefined">
         <div class="spinner-border" role="status">
             <span class="sr-only"></span>
         </div>

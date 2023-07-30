@@ -12,6 +12,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './login/login/login.component';
 import { ItemContainerComponent } from './item-container/item-container.component';
 import { FoodComponent } from './food/food.component';
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +26,8 @@ import { FoodComponent } from './food/food.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
