@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { LoginComponent } from './login/login/login.component';
 import { ItemContainerComponent } from './item-container/item-container.component';
+import { FoodComponent } from './food/food.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,6 +19,7 @@ import { ItemContainerComponent } from './item-container/item-container.componen
     HeadlineComponent,
     LoginComponent,
     ItemContainerComponent,
+    FoodComponent,
   ],
   imports: [
     BrowserModule,
