@@ -6,6 +6,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import { loginGuard } from './login.guard';
 import { LoginComponent } from './login/login/login.component';
 import { logoutGuard } from './logout.guard';
+import { MainComponent } from './main/main.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,9 @@ const routes: Routes = [
   {
     path: 'main', component: ItemContainerComponent, canActivate: [loginGuard],
     children: [
+      {
+        path:'' ,component: MainComponent
+      },
       {
         path: 'food', component: FoodComponent
       },
